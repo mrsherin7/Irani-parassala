@@ -1,0 +1,286 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   GLOBAL RESETS & BASE
+   ============================================ */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cream-50 text-charcoal-900 font-sans antialiased;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* Focus styles */
+  :focus-visible {
+    outline: 2px solid theme('colors.gold.400');
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Selection */
+  ::selection {
+    background: theme('colors.gold.300');
+    color: theme('colors.charcoal.900');
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY UTILITIES
+   ============================================ */
+@layer components {
+  .heading-display {
+    @apply font-display font-light tracking-wide;
+    font-feature-settings: "liga" 1, "kern" 1;
+  }
+
+  .heading-section {
+    @apply font-serif font-medium tracking-wide;
+  }
+
+  .label-caps {
+    @apply font-sans text-xs uppercase tracking-widest font-medium;
+  }
+
+  /* ============================================
+     BUTTONS
+     ============================================ */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 font-sans font-medium transition-all duration-200 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply btn px-7 py-3.5 bg-charcoal-900 text-cream-50 text-sm tracking-wide;
+    letter-spacing: 0.06em;
+  }
+  .btn-primary:hover {
+    @apply bg-charcoal-800;
+    transform: translateY(-1px);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+  }
+
+  .btn-outline {
+    @apply btn px-7 py-3.5 border border-charcoal-900 text-charcoal-900 text-sm tracking-wide bg-transparent;
+    letter-spacing: 0.06em;
+  }
+  .btn-outline:hover {
+    @apply bg-charcoal-900 text-cream-50;
+  }
+
+  .btn-gold {
+    @apply btn px-7 py-3.5 bg-gold-400 text-charcoal-900 text-sm tracking-wide;
+    letter-spacing: 0.06em;
+  }
+  .btn-gold:hover {
+    @apply bg-gold-500 text-cream-50;
+    transform: translateY(-1px);
+  }
+
+  .btn-ghost {
+    @apply btn px-4 py-2 text-charcoal-700 text-sm;
+  }
+  .btn-ghost:hover {
+    @apply text-charcoal-900;
+  }
+
+  /* ============================================
+     SECTION LAYOUT
+     ============================================ */
+  .section-container {
+    @apply max-w-7xl mx-auto px-5 sm:px-8 lg:px-12;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28;
+  }
+
+  .section-label {
+    @apply label-caps text-gold-500 mb-4 block;
+  }
+
+  /* ============================================
+     CARD VARIANTS
+     ============================================ */
+  .dish-card {
+    @apply bg-cream-50 overflow-hidden cursor-pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .dish-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px -15px rgba(26, 20, 16, 0.15);
+  }
+
+  /* ============================================
+     DIVIDERS
+     ============================================ */
+  .divider-gold {
+    @apply w-12 h-px bg-gold-400 my-6;
+  }
+
+  /* ============================================
+     NAVBAR
+     ============================================ */
+  .nav-link {
+    @apply label-caps text-charcoal-600 hover:text-charcoal-900 transition-colors duration-200 py-1;
+    position: relative;
+  }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.25s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+  .nav-link.active {
+    @apply text-charcoal-900;
+  }
+
+  /* ============================================
+     IMAGE PLACEHOLDER
+     ============================================ */
+  .img-placeholder {
+    @apply bg-brown-100 flex items-center justify-center text-brown-300;
+  }
+
+  /* ============================================
+     SKELETON LOADER
+     ============================================ */
+  .skeleton {
+    @apply bg-brown-100 animate-pulse rounded-sm;
+  }
+
+  /* ============================================
+     BADGE
+     ============================================ */
+  .badge {
+    @apply inline-block text-xs font-medium px-2.5 py-1 uppercase tracking-wider;
+  }
+  .badge-featured {
+    @apply badge bg-gold-300 text-charcoal-900;
+  }
+  .badge-veg {
+    @apply badge bg-green-100 text-green-800;
+  }
+  .badge-nonveg {
+    @apply badge bg-red-50 text-red-800;
+  }
+
+  /* ============================================
+     WHATSAPP FLOAT BUTTON
+     ============================================ */
+  .whatsapp-float {
+    @apply fixed bottom-6 right-6 z-50 flex items-center gap-2.5 px-5 py-3 bg-[#25D366] text-white text-sm font-medium shadow-xl;
+    border-radius: 100px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .whatsapp-float:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 40px -8px rgba(37, 211, 102, 0.5);
+  }
+}
+
+/* ============================================
+   SCROLLBAR
+   ============================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: theme('colors.cream.100');
+}
+::-webkit-scrollbar-thumb {
+  background: theme('colors.brown.300');
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.charcoal.600');
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ============================================
+   HERO OVERLAY
+   ============================================ */
+.hero-overlay {
+  background: linear-gradient(
+    to right,
+    rgba(26, 20, 16, 0.75) 0%,
+    rgba(26, 20, 16, 0.45) 50%,
+    rgba(26, 20, 16, 0.15) 100%
+  );
+}
+
+/* ============================================
+   GALLERY MASONRY
+   ============================================ */
+.gallery-masonry {
+  columns: 1;
+  column-gap: 1rem;
+}
+@media (min-width: 640px) {
+  .gallery-masonry { columns: 2; }
+}
+@media (min-width: 1024px) {
+  .gallery-masonry { columns: 3; }
+}
+@media (min-width: 1280px) {
+  .gallery-masonry { columns: 4; }
+}
+.gallery-masonry > * {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+/* ============================================
+   MENU TABS
+   ============================================ */
+.menu-tab {
+  @apply label-caps text-charcoal-500 pb-2 cursor-pointer border-b-2 border-transparent transition-all duration-200 whitespace-nowrap;
+}
+.menu-tab:hover {
+  @apply text-charcoal-900;
+}
+.menu-tab.active {
+  @apply text-charcoal-900 border-gold-400;
+}
+
+/* ============================================
+   LIGHTBOX
+   ============================================ */
+.lightbox-overlay {
+  background: rgba(10, 8, 6, 0.94);
+  backdrop-filter: blur(8px);
+}
